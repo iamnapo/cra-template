@@ -1,35 +1,39 @@
 {
-  "name": "@iamnapo/cra-template",
-  "version": "0.0.0",
-  "private": true,
-  "description": "Opinionated Create React App template with all the important stuff",
-  "keywords": [
-    "react",
-    "create-react-app",
+	"name": "@iamnapo/cra-template",
+	"version": "0.0.0",
+	"description": "Opinionated Create React App template with all the important stuff",
+	"keywords": [
+		"react",
+		"create-react-app",
 		"template",
 		"cra-template",
-    "iamnapo",
-    "material-ui",
+		"iamnapo",
+		"material-ui",
 		"react-router",
 		"eslint",
 		"cypress",
 		"swr",
-		"zustand"
-  ],
-  "homepage": "https://github.com/iamnapo/cra-template#readme",
-  "bugs": {
-    "url": "https://github.com/iamnapo/cra-template/issues"
-  },
-  "repository": "github:iamnapo/cra-template",
-  "license": "MIT",
-  "author": {
-    "name": "Napoleon-Christos Oikonomou",
-    "email": "napoleonoikon@gmail.com",
-    "url": "https://iamnapo.me"
-  },
-  "main": "template.json",
-  "files": [
-    "template",
-    "template.json"
-  ]
+		"zustand",
+		"google-analytics",
+		"pwa"
+	],
+	"homepage": "https://github.com/iamnapo/cra-template#readme",
+	"bugs": {
+		"url": "https://github.com/iamnapo/cra-template/issues"
+	},
+	"repository": "github:iamnapo/cra-template",
+	"license": "MIT",
+	"author": {
+		"name": "Napoleon-Christos Oikonomou",
+		"email": "napoleonoikon@gmail.com",
+		"url": "https://iamnapo.me"
+	},
+	"main": "template.json",
+	"files": [
+		"template",
+		"template.json"
+	],
+	"publishConfig": {
+		"access": "public"
+	}
 }
