@@ -1,0 +1,121 @@
+{
+	"package": {
+		"private": true,
+		"scripts": {
+			"analyze": "source-map-explorer 'build/static/js/*.js'",
+			"build": "react-app-rewired build",
+			"cypress:open": "cypress open",
+			"cypress:run": "cypress run",
+			"generate-coverage-report": "nyc report --reporter=text-lcov > coverage.lcov",
+			"lint": "eslint . --cache",
+			"start": "react-app-rewired start",
+			"start:for-cypress": "react-app-rewired -r @cypress/instrument-cra start",
+			"test": "npm run lint && start-server-and-test start:for-cypress :3000 cypress:run"
+		},
+		"husky": {
+			"hooks": {
+				"pre-commit": "npm run lint"
+			}
+		},
+		"browserslist": {
+			"production": [
+				">1%",
+				"not dead",
+				"not op_mini all",
+				"not ie > 0",
+				"not ie_mob > 0"
+			],
+			"development": [
+				"last 1 chrome version",
+				"last 1 firefox version",
+				"last 1 safari version"
+			]
+		},
+		"prettier": "@iamnapo/prettier-config",
+		"eslintConfig": {
+			"plugins": [
+				"cypress"
+			],
+			"extends": [
+				"plugin:cypress/recommended",
+				"iamnapo/with-react"
+			],
+			"rules": {
+				"import/no-extraneous-dependencies": [
+					"error",
+					{
+						"devDependencies": [
+							"cypress/**/*.js"
+						]
+					}
+				]
+			},
+			"ignorePatterns": [
+				"build",
+				"coverage"
+			]
+		},
+		"dependencies": {
+			"@emotion/react": "^11.1.4",
+			"@emotion/styled": "^11.0.0",
+			"@fontsource/roboto": "^4.1.0",
+			"@iamnapo/construct-url": "^1.0.3",
+			"@material-ui/core": "^5.0.0-alpha.24",
+			"@material-ui/icons": "^5.0.0-alpha.24",
+			"@material-ui/lab": "^5.0.0-alpha.24",
+			"@sentry/browser": "^6.0.3",
+			"clsx": "^1.1.1",
+			"customize-cra": "^1.0.0",
+			"date-fns": "^2.16.1",
+			"history": "^4.10.1",
+			"ky": "^0.26.0",
+			"notistack": "^1.0.3",
+			"prop-types": "^15.7.2",
+			"query-string": "^6.13.8",
+			"react": "^17.0.1",
+			"react-dom": "^17.0.1",
+			"react-ga": "^3.3.0",
+			"react-router-dom": "^5.2.0",
+			"react-scripts": "^4.0.1",
+			"swr": "^0.4.1",
+			"web-vitals": "^1.1.0",
+			"workbox-background-sync": "^6.1.0",
+			"workbox-broadcast-update": "^6.1.0",
+			"workbox-cacheable-response": "^6.1.0",
+			"workbox-core": "^6.1.0",
+			"workbox-expiration": "^6.1.0",
+			"workbox-google-analytics": "^6.1.0",
+			"workbox-navigation-preload": "^6.1.0",
+			"workbox-precaching": "^6.1.0",
+			"workbox-range-requests": "^6.1.0",
+			"workbox-routing": "^6.1.0",
+			"workbox-strategies": "^6.1.0",
+			"workbox-streams": "^6.1.0",
+			"zustand": "^3.3.1"
+		},
+		"devDependencies": {
+			"@cypress/code-coverage": "^3.9.2",
+			"@cypress/instrument-cra": "^1.4.0",
+			"@iamnapo/prettier-config": "^1.0.2",
+			"babel-plugin-import": "^1.13.3",
+			"cypress": "^6.3.0",
+			"dotenv": "^8.2.0",
+			"eslint": "^7.19.0",
+			"eslint-config-iamnapo": "^12.0.0",
+			"eslint-plugin-cypress": "^2.11.2",
+			"eslint-plugin-import": "^2.22.1",
+			"eslint-plugin-jsx-a11y": "^6.4.1",
+			"eslint-plugin-react": "^7.22.0",
+			"eslint-plugin-react-hooks": "^4.2.0",
+			"eslint-plugin-unicorn": "^27.0.0",
+			"husky": "^4.3.8",
+			"react-app-rewired": "^2.1.8",
+			"sass": "^1.32.5",
+			"source-map-explorer": "^2.5.2",
+			"start-server-and-test": "^1.12.0"
+		},
+		"engines": {
+			"node": ">=14"
+		}
+	}
+}

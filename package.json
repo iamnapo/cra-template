@@ -1,0 +1,23 @@
+{
+  "name": "@iamnapo/cra-template",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Opinionated Create React App template with all the important stuff",
+  "keywords": [],
+  "homepage": "https://github.com/iamnapo/cra-template#readme",
+  "bugs": {
+    "url": "https://github.com/iamnapo/cra-template/issues"
+  },
+  "repository": "github:iamnapo/cra-template",
+  "license": "MIT",
+  "author": {
+    "name": "Napoleon-Christos Oikonomou",
+    "email": "napoleonoikon@gmail.com",
+    "url": "https://iamnapo.me"
+  },
+  "main": "template.json",
+  "files": [
+    "template",
+    "template.json"
+  ]
+}
