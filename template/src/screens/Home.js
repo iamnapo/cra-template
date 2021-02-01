@@ -3,7 +3,7 @@ import { useCallback } from "react";
 import { Loyalty } from "@material-ui/icons";
 
 import { useGlobalState } from "../utils";
-import logo from "../assets/images/logo.svg";
+import Logo from "../components/Logo";
 
 const Home = () => {
 	const stuff = useGlobalState(useCallback((e) => e.stuff, []));
@@ -12,7 +12,7 @@ const Home = () => {
 		<Box>
 			<Grid container component="header" alignItems="center" justifyContent="center" direction="column" bgcolor="secondary.main" minHeight="100vh">
 				<Grid item>
-					<img src={logo} alt="logo" style={{ height: "40vmin" }} />
+					<Logo />
 				</Grid>
 				<Grid item>
 					<Typography variant="h4" sx={{ color: "common.white" }}>
