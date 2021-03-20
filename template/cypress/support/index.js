@@ -1,3 +1,5 @@
+/// <reference types="cypress" />
+
 import "@cypress/code-coverage/support";
 
 Cypress.on("window:before:load", (win) => {
