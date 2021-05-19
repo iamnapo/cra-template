@@ -3,6 +3,11 @@
 @import "~@fontsource/roboto/500.css";
 @import "~@fontsource/roboto/700.css";
 
+html,
 body {
 	margin: 0;
+}
+
+body {
+	min-height: 100vh;
 }
