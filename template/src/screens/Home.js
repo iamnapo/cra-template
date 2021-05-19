@@ -10,7 +10,16 @@ const Home = () => {
 
 	return (
 		<Box>
-			<Grid container component="header" alignItems="center" justifyContent="center" direction="column" bgcolor="secondary.main" minHeight="100vh">
+			<Grid
+				container
+				component="header"
+				alignItems="center"
+				justifyContent="center"
+				textAlign="center"
+				direction="column"
+				bgcolor="secondary.main"
+				minHeight="100vh"
+			>
 				<Grid item>
 					<Logo />
 				</Grid>

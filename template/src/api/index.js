@@ -1,5 +1,5 @@
 import useSWR from "swr";
-import ky from "ky";
+import ky from "ky/distribution";
 import queryString from "query-string";
 import constructUrl from "@iamnapo/construct-url";
 

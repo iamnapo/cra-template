@@ -1,8 +1,8 @@
 import { lazy, StrictMode, Suspense, useCallback, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { Router, Switch, Route, useLocation } from "react-router-dom";
-import { LinearProgress, StyledEngineProvider } from "@material-ui/core";
-import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import { LinearProgress } from "@material-ui/core";
+import { ThemeProvider, createTheme, StyledEngineProvider } from "@material-ui/core/styles";
 import { SnackbarProvider } from "notistack";
 import ReactGA from "react-ga";
 import * as Sentry from "@sentry/browser";
@@ -14,8 +14,9 @@ import "./index.scss";
 
 import history from "./history";
 import { useGlobalState } from "./utils";
-import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
-import reportWebVitals from "./reportWebVitals";
+import api from "./api";
+import * as serviceWorkerRegistration from "./service-worker-registration";
+import reportWebVitals from "./report-web-vitals";
 
 const Home = lazy(() => import("./screens/Home"));
 
@@ -26,8 +27,8 @@ Sentry.init({
 	enabled: process.env.NODE_ENV === "production",
 });
 ReactGA.initialize(process.env.REACT_APP_GA, { testMode: process.env.NODE_ENV !== "production" });
-const swrConfig = { revalidateOnFocus: false, shouldRetryOnError: false };
-const theme = createMuiTheme({
+const swrConfig = { revalidateOnFocus: false, shouldRetryOnError: false, fetcher: api.get };
+const theme = createTheme({
 	palette: {
 		primary: {
 			main: "#61dafb",
