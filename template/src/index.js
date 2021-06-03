@@ -1,9 +1,8 @@
 import { lazy, StrictMode, Suspense, useCallback, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { Router, Switch, Route, useLocation } from "react-router-dom";
-import { LinearProgress } from "@material-ui/core";
+import { LinearProgress, CssBaseline } from "@material-ui/core";
 import { ThemeProvider, createTheme, StyledEngineProvider } from "@material-ui/core/styles";
-import { SnackbarProvider } from "notistack";
 import ReactGA from "react-ga";
 import * as Sentry from "@sentry/browser";
 import { LocalizationProvider, AdapterDateFns } from "@material-ui/lab";
@@ -12,6 +11,7 @@ import shallow from "zustand/shallow";
 
 import "./index.scss";
 
+import SnackBar from "./components/SnackBar";
 import history from "./history";
 import { useGlobalState } from "./utils";
 import api from "./api";
@@ -59,18 +59,18 @@ const App = () => {
 
 	return (
 		<StyledEngineProvider injectFirst>
+			<CssBaseline />
 			<ThemeProvider theme={theme}>
 				<SWRConfig value={swrConfig}>
 					<LocalizationProvider dateAdapter={AdapterDateFns}>
-						<SnackbarProvider anchorOrigin={{ vertical: "bottom", horizontal: "right" }} maxSnack={1}>
-							<main>
-								<Switch>
-									<Suspense fallback={<LinearProgress />}>
-										<Route exact path="/" component={Home} />
-									</Suspense>
-								</Switch>
-							</main>
-						</SnackbarProvider>
+						<main>
+							<Switch>
+								<Suspense fallback={<LinearProgress />}>
+									<Route exact path="/" component={Home} />
+								</Suspense>
+							</Switch>
+						</main>
+						<SnackBar />
 					</LocalizationProvider>
 				</SWRConfig>
 			</ThemeProvider>
