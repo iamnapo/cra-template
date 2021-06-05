@@ -1,7 +1,7 @@
-import { lazy, StrictMode, Suspense, useCallback, useEffect } from "react";
+import { lazy, StrictMode, Suspense, useCallback, useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import { Router, Switch, Route, useLocation } from "react-router-dom";
-import { LinearProgress, CssBaseline } from "@material-ui/core";
+import { LinearProgress, CssBaseline, Slide, Alert, Button, Snackbar as MaterialSnackbar } from "@material-ui/core";
 import { ThemeProvider, createTheme, StyledEngineProvider } from "@material-ui/core/styles";
 import ReactGA from "react-ga";
 import * as Sentry from "@sentry/browser";
@@ -41,10 +41,25 @@ const theme = createTheme({
 
 const App = () => {
 	const { pathname } = useLocation();
+	const [waitingWorker, setWaitingWorker] = useState(null);
+	const [newVersionAvailable, setNewVersionAvailable] = useState(false);
 	const { stuff, setStuff } = useGlobalState(useCallback((e) => ({
 		stuff: e.stuff,
 		setStuff: e.setStuff,
 	}), []), shallow);
+
+	const updateSW = useCallback(() => {
+		waitingWorker?.postMessage({ type: "SKIP_WAITING" });
+		setNewVersionAvailable(false);
+		window.location.reload();
+	}, [waitingWorker]);
+
+	useEffect(() => {
+		serviceWorkerRegistration.register({ onUpdate: ({ waiting }) => {
+			setWaitingWorker(waiting);
+			setNewVersionAvailable(true);
+		} });
+	}, []);
 
 	console.log(stuff);
 
@@ -71,6 +86,21 @@ const App = () => {
 							</Switch>
 						</main>
 						<SnackBar />
+						<MaterialSnackbar
+							open={newVersionAvailable}
+							anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+							TransitionComponent={Slide}
+							TransitionProps={{ direction: "up" }}
+						>
+							<Alert
+								variant="filled"
+								severity="info"
+								sx={{ alignItems: "center", ".MuiAlert-action": { p: 0 } }}
+								action={<Button color="inherit" size="small" onClick={updateSW} sx={{ p: 1 }}>{"update"}</Button>}
+							>
+								{"A new version is available!"}
+							</Alert>
+						</MaterialSnackbar>
 					</LocalizationProvider>
 				</SWRConfig>
 			</ThemeProvider>
