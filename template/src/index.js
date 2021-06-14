@@ -1,6 +1,6 @@
 import { lazy, StrictMode, Suspense, useCallback, useEffect, useState } from "react";
 import ReactDOM from "react-dom";
-import { Router, Switch, Route, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { LinearProgress, CssBaseline, Slide, Alert, Button, Snackbar as MaterialSnackbar } from "@material-ui/core";
 import { ThemeProvider, createTheme, StyledEngineProvider } from "@material-ui/core/styles";
 import ReactGA from "react-ga";
@@ -12,7 +12,6 @@ import shallow from "zustand/shallow";
 import "./index.scss";
 
 import SnackBar from "./components/SnackBar";
-import history from "./history";
 import { useGlobalState } from "./utils";
 import api from "./api";
 import * as serviceWorkerRegistration from "./service-worker-registration";
@@ -79,11 +78,11 @@ const App = () => {
 				<SWRConfig value={swrConfig}>
 					<LocalizationProvider dateAdapter={AdapterDateFns}>
 						<main>
-							<Switch>
+							<Routes>
 								<Suspense fallback={<LinearProgress />}>
-									<Route exact path="/" component={Home} />
+									<Route path="/" element={<Home />} />
 								</Suspense>
-							</Switch>
+							</Routes>
 						</main>
 						<SnackBar />
 						<MaterialSnackbar
@@ -110,7 +109,7 @@ const App = () => {
 
 ReactDOM.render(
 	<StrictMode>
-		<Router history={history}>
+		<Router>
 			<App />
 		</Router>
 	</StrictMode>,
