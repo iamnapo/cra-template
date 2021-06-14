@@ -1,6 +1,6 @@
 {
 	"name": "@iamnapo/cra-template",
-	"version": "0.5.0",
+	"version": "0.6.0",
 	"description": "Opinionated Create React App template with all the important stuff",
 	"keywords": [
 		"react",
